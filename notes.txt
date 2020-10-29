@@ -1,0 +1,24 @@
+We are looking for you to develop the backend for a small app with limited functionality. Visit https://jonathanarde.github.io/ to see the app.
+
+Features summary:
+- adding/removing/editing of questions
+- defining the question (textarea)
+- defining/deleting answer options
+- dragging/dropping of questions
+- saving a current state of the question
+
+Your task:
+Develop the backend using Node + Express.js + MySQL (use any ORM library of your choice). Write unit and functional tests for your code following the TDD principle (use testing library of your choice). Push your code to github/your version control preference.
+
+Extra Credits: dockerize your backend.
+
+    https://www.simform.com/unit-testing-vs-functional-testing/#:~:text=Also%2C%20unit%2Dtest%20sensitizes%20all,at%20the%20internal%20code%20structure.
+
+    Unit Testing: Testing the units of code in isolation. Test a method/fnction (White box testing)
+        Ex. use JEST
+
+    Functional Testing: the functionality as per user requirements (can I login? can I add question? delete question) (Black Box testing)
+    
+    ### Test Driven Development (TDD) ###
+    The best practice is that you should start writing your tests when you start writing your code. Test Driven Development (TDD) is a popular software development practice which advocates writing tests before the code.
+
