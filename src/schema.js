@@ -35,7 +35,7 @@ const schema = buildSchema(`
         question(id: Int!): Question
         questions: [Question]
     }
-
+    
     type Question {
         id: Int!
         question: String!

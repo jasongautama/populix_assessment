@@ -9,6 +9,8 @@ const request = supertest(app)
 /*
 https://rahmanfadhil.com/test-express-with-supertest/
 
+https://www.rithmschool.com/courses/intermediate-node-express/api-tests-with-jest
+
 */
 
 //it and test are the same
