@@ -32,24 +32,20 @@ type Character {
 const schema = buildSchema(`
 
     type Query {
-        hello: String
-    }
-
-    type Questions {
-        id: Int!
+        question(id: Int!): Question
         questions: [Question]
     }
 
     type Question {
         id: Int!
         question: String!
-        respondent_options: RespondentOption
+        respondent_options: [RespondentOption]
     }
 
     type RespondentOption {
         id: Int!
         answer: String!
-        select: SELECTOPTION!
+        type: Int!
     }
 
     input QuestionsInput {
@@ -58,7 +54,7 @@ const schema = buildSchema(`
 
     input QuestionInput {
         question: String
-        respondent_options: RespondentOption
+        respondent_options: [RespondentOptionInput]
     }
 
     input RespondentOptionInput {
