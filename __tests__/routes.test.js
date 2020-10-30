@@ -45,9 +45,14 @@ it('GET /questions', async () => {
         question: "how old are you?",
         respondent_options: [
             {
-            id: 1,
-            answer: "20-25",
-            type: 1 
+                id: 1,
+                answer: "20-25",
+                type: 1 
+            },
+            {
+                id:2,
+                answer: "25-30",
+                type: 2
             }
         ]}
         // ,{

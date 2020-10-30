@@ -9,10 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING, 
             allowNull: false
         },
-        type: {
-            type: DataTypes.ENUM,
-            values: ['MAYSELECT', 'MUSTSELECT', 'TERMINATEIFSELECT']
-        }
+        type: DataTypes.INTEGER
     })
 
     respondentOptions.associate = (models) => {
