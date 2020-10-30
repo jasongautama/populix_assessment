@@ -1,6 +1,6 @@
 const { test, expect, it } = require("@jest/globals")
 const express = require('express')
-const schema = require('../src/schema')
+const schema = require('../server/api/schema')
 
 const app = require('../src/app')
 const supertest = require('supertest')
@@ -49,8 +49,8 @@ it('GET /questions', async () => {
             answer: "20-25",
             type: 1 
             }
-        ]}, 
-        // {
+        ]}
+        // ,{
         // id: 2,
         // question: "Where are you located?",
         // respondent_options: [
