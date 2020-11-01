@@ -28,14 +28,19 @@ type Character {
     }
 */
 
+//!!!!!!!!!!!!!!! IMPORTANT !!!!!!!!!!!!!!!
+//https://www.apollographql.com/docs/apollo-server/schema/directives/
+//https://www.npmjs.com/package/graphql-mysql-resolver
+
 const { gql } = require('apollo-server-express')
 //const GraphQLJSON, { GraphQLJSONObject } = require('graphql-type-json')
 
 const schema = gql`
+
     type Question {
         id: Int
         question: String!
-        respondent_options: [RespondentOption!]!
+        respondent_options: [RespondentOption]
     }
 
     type RespondentOption {
@@ -54,8 +59,9 @@ const schema = gql`
     }
 
     input RespondentOptionInput {
+        id: Int
         answer: String
-        select: SELECTOPTION
+        type: Int
     }
 
     enum SELECTOPTION {
@@ -66,12 +72,13 @@ const schema = gql`
 
     
     type Query {
+        hello(name: String): String!
+        question(id: Int): Question
         questions: [Question]
-        question(id: Int!): Question
     }
     
     type Mutation {
-        createQuestion(id: Int, question: String!, respondent_option: [RespondentOptionInput!]!): Question!
+        createQuestion(id: Int, question: String!, respondent_options: [RespondentOptionInput!]!): Question!
     }
 
 `

@@ -22,3 +22,29 @@ Extra Credits: dockerize your backend.
     ### Test Driven Development (TDD) ###
     The best practice is that you should start writing your tests when you start writing your code. Test Driven Development (TDD) is a popular software development practice which advocates writing tests before the code.
 
+
+### how to query and mutate in Graphql playground -- http://localhost:4000/graphql
+
+mutation{
+  createQuestion(question: "Who are you?", respondent_options: [{id:1, answer:"Jason", type: 1}, {id:2, answer:"Jennie", type: 3}]) {
+    question
+    respondent_options {
+      id
+      answer
+      type
+    }
+  }
+  
+}
+
+query {
+    questions {
+        id
+        question
+        respondent_options {
+            id
+            answer
+            type
+        }
+    }
+}

@@ -25,7 +25,7 @@ module.exports = {
 
   },
   seeds: { //to populate a DB w/ sample or mock data
-    directory: __dirname + './knex/migrations'
+    directory: __dirname + './knex/seeds'
   }
 
 }
