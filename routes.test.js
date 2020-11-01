@@ -1,29 +1,60 @@
 const { test, expect, it } = require("@jest/globals")
 const express = require('express')
-const schema = require('../server/api/schema')
+const schema = require('./server/api/schema')
 
-const app = require('../src/app')
-const supertest = require('supertest')
-const request = supertest(app)
-
+const app = require('./server')
+const request = require('supertest')
+require('iconv-lite').encodingExists('foo')
 /*
 https://rahmanfadhil.com/test-express-with-supertest/
 
 https://www.rithmschool.com/courses/intermediate-node-express/api-tests-with-jest
 
 */
+const Questions = [
+    {
+    id: 1,
+    question: "how old are you?",
+    respondent_options: [
+        {
+            id: 1,
+            answer: "20-25",
+            type: 1 
+        },
+        {
+            id:2,
+            answer: "25-30",
+            type: 2
+        }
+    ]}
+    // ,{
+    // id: 2,
+    // question: "Where are you located?",
+    // respondent_options: [
+    //     {
+    //     id: 1,
+    //     answer: "Surabaya",
+    //     type: 1 
+    //     },
+    //     {
+    //     id: 2,
+    //     answer: "Jakarta",
+    //     type: 1
+    //     }
+    // ]}
+]
 
 //it and test are the same
 //describe -- creates a block of 'it' aka grouping of tests(it) 
 
-it('gets the test endpoint', () => {
-    //const response = await request.get('/test')
-    return request
-        .get('/test')
-        .expect(200)
-    //expect(response.status).toBe(200)
-    //expect(response.body.message).toBe('pass!')
-})
+// it('gets the test endpoint', () => {
+//     //const response = await request.get('/test')
+//     return request
+//         .get('/test')
+//         .expect(200)
+//     //expect(response.status).toBe(200)
+//     //expect(response.body.message).toBe('pass!')
+// })
 
 // it('POST /upload-question')
 
@@ -38,46 +69,13 @@ it('gets the test endpoint', () => {
 // it('POST /delete-answer/{questionId}')
 
 it('GET /questions', async () => {
-    //post request to DB
-    const Questions = [
-        {
-        id: 1,
-        question: "how old are you?",
-        respondent_options: [
-            {
-                id: 1,
-                answer: "20-25",
-                type: 1 
-            },
-            {
-                id:2,
-                answer: "25-30",
-                type: 2
-            }
-        ]}
-        // ,{
-        // id: 2,
-        // question: "Where are you located?",
-        // respondent_options: [
-        //     {
-        //     id: 1,
-        //     answer: "Surabaya",
-        //     type: 1 
-        //     },
-        //     {
-        //     id: 2,
-        //     answer: "Jakarta",
-        //     type: 1
-        //     }
-        // ]}
-    ]
 
     //get request from DB
-    return await request
-        .get('/questions')
+    request(app)
+        .get(`/questions`)
         .expect(200)
         .then((res) => {
-
+            console.log(res)
             //check response type and length
             expect(Array.isArray(res.body)).toBeTruthy()
             expect(res.body.data.questions.length).toEqual(Questions.length)
@@ -95,6 +93,7 @@ it('GET /questions', async () => {
             expect(res.body.data.questions[0].respondent_options[0].type).toEqual(Questions[0].respondent_options[0].type)
 
         })
+
 })
 
 

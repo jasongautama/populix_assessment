@@ -59,8 +59,7 @@ const resolvers = {
     }
   },
   Mutation: {
-    createQuestion: (parent, args) => {
-      console.log(args)
+    createQuestion: (_, args) => {
       const question = {
         id: ++question_id,
         question: args.question,
