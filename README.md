@@ -32,7 +32,8 @@ Current implemented API routes:
     # GET /questions
 
 Next Step:
-    1. implement routes that haven't been implemented
+
+1. implement routes that haven't been implemented
         
         # GET /question/{id}
         
@@ -42,7 +43,7 @@ Next Step:
         
         # POST /delete-answer/{questionId}
     
-    2. hook up to Database and fetch data from there
+2. hook up to Database and fetch data from there
 
 Sample of json result when get all questions (GET /questions):
 
