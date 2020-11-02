@@ -26,15 +26,22 @@ Currently, data is static (located in /server/api/resolvers.js).
 In progress to store data in MySQL. With the help of Knex.js, I was able to run migration and seeds to populate the DB in MySQL
 
 Current implemented API routes:
+    
     # POST /upload-question
+    
     # GET /questions
 
 Next Step:
     1. implement routes that haven't been implemented
+        
         # GET /question/{id}
+        
         # POST /delete-question/{id}
+        
         # POST /update-questions-order
+        
         # POST /delete-answer/{questionId}
+    
     2. hook up to Database and fetch data from there
 
 Sample of json result when get all questions (GET /questions):
