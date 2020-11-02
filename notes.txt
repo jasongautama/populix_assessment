@@ -48,3 +48,45 @@ query {
         }
     }
 }
+
+query {
+  question(id: 1) {
+    id
+    question
+    respondent_options {
+      id
+      answer
+      type
+    }
+  }
+}
+
+question: "Who are you?", respondent_options: [{id:1, answer:"Jason", type: 1}, {id:2, answer:"Jennie", type: 3}]
+
+{"question": "Who are you?", "respondent_options": [{"id":1, "answer":"Jason", "type": 1}, {"id":2, "answer":"Jennie", "type": 3}] }
+
+`mutation{
+        createQuestion(question: "${req.body.question}", respondent_options: ${req.body.respondent_options}) {
+          question
+          respondent_options {
+            id
+            answer
+            type
+          }
+        }
+        
+      }`
+
+playground
+
+mutation{
+  createQuestion(question: "Who are you?", respondent_options: [{id:1, answer:"Jason", type: 1}, {id:2, answer:"Jennie", type: 3}]) {
+    question
+    respondent_options {
+      id
+      answer
+      type
+    }
+  }
+  
+}
