@@ -34,14 +34,12 @@ Current implemented API routes:
     # POST /update-question/:questionId
 
     # GET /question/{id}
+    
+    # POST /delete-question/{id}
 
 Next Step:
 
 1. implement routes that haven't been implemented
-        
-        # POST /delete-question/{id}
-        
-        # POST /update-questions-order
         
         # POST /delete-answer/{questionId}
     

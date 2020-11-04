@@ -152,16 +152,43 @@ it('GET /question/{id}', () => {
         .expect(200)
         .then(({text}) => {
             var res = JSON.parse(text)
-            console.log(res)
+            //console.log(res)
             expect(res.data.question.id).toEqual(query2.id)
             expect(res.data.question.question).toEqual(query2.question)
             expect(res.data.question.respondent_options).toEqual(query2.respondent_options)
         })
 })
 
-// })
+const id = 1
+const query3 = {
+    id: 1,
+    question: "how old are you?",
+    respondent_options: [
+        {
+            id: 1,
+            answer: "20-25",
+            type: 1 
+        },
+        {
+            id:2,
+            answer: "25-30",
+            type: 2
+        }
+    ]
+}
 
-// it('POST /delete-question/:id')
+it('POST /delete-question/{id}', () => {
+    return request(app)
+        .post(`/delete-question/${query3.id}`)
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .expect(200)
+        .then(({text}) => {
+            var res = JSON.parse(text)
+            //console.log(res)
+            expect(res.data.deleteQuestion).toEqual(expect.stringContaining('successfully delete'))
+        })
+})
 
 // it('POST /update-questions-order') //pass Questions as post
 

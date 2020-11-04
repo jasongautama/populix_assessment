@@ -10,7 +10,7 @@ const client = Knex({ client: 'mysql', connection: {
   database: process.env.DB_DATABASE
 }})
 */
-const data = [
+let data = [
   {
   id: 1,
   question: "how old are you?",
@@ -81,6 +81,19 @@ const resolvers = {
       }
 
       return returnVal
+    },
+    deleteQuestion: (_, {id}) => {
+
+      const res = data.filter((data) => data.id !== id)
+
+      //meaning no data has been deleted
+      if (data.length === res.length) {
+        return null
+      }
+
+      data = res
+
+      return `successfully delete question ID = ${id}`
     }
   }
 }
