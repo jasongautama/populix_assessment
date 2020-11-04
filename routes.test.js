@@ -35,11 +35,6 @@ const Questions = [
     ]}
 ]
 
-afterAll(() => {
-    return app.close()
-})
-
-
 //it and test are the same
 //describe -- creates a block of 'it' aka grouping of tests(it) 
 it('GET /questions', () => {
@@ -62,7 +57,7 @@ it('GET /questions', () => {
         })
 })
 
-let query = {
+const query = {
     question: "Who are you?",
     respondent_options: [
         {
@@ -87,19 +82,92 @@ it('POST /upload-question', () => {
         .expect(200)
         .then(({text}) => {
             var res = JSON.parse(text)
+            //console.log(res)
+            
             //no need to be exactly equal all Obj keys and values 
-            //console.log(data)
             expect(res.data.createQuestion).toMatchObject(query) 
         })
 
 })
 
-// it('POST /update-question/{id}')
+//get question where id = {id}
+//change the question, respondent_options data (UPDATE)
+const query1 = {
+    id: 3, //given ID = 3
+    question: "What is your name?", //change from "who are you" to "what is your name"
+    respondent_options: [
+        {
+          id: 1,
+          answer: "Jason",
+          type: 1
+        },
+        {
+          id: 2,
+          answer: "Johnny",
+          type: 3
+        }
+    ]
+}
+it('POST /update-question/{id}', () => {
+    return request(app)
+        .post(`/update-question/${query1.id}`)
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .send(query1)
+        .expect(200)
+        .then(({text}) => {
+            var res = JSON.parse(text)
+            //console.log(res)
 
-// it('GET /question/{id}')
+            expect(res.data.updateQuestion.id).toEqual(query1.id)
+            expect(res.data.updateQuestion.question).toEqual(query1.question)
+            expect(res.data.updateQuestion.respondent_options).toEqual(query1.respondent_options)
+        })
+
+
+})
+
+const query2 = {
+    id: 2,
+    question: "Where are you located?",
+    respondent_options: [
+        {
+        id: 1,
+        answer: "Surabaya",
+        type: 1 
+        },
+        {
+        id: 2,
+        answer: "Jakarta",
+        type: 1
+        }
+    ]
+}
+
+
+it('GET /question/{id}', () => {
+    return request(app)
+        .get(`/question/${query2.id}`)
+        .set('Accept', 'application/json')
+        .expect(200)
+        .then(({text}) => {
+            var res = JSON.parse(text)
+            console.log(res)
+            expect(res.data.question.id).toEqual(query2.id)
+            expect(res.data.question.question).toEqual(query2.question)
+            expect(res.data.question.respondent_options).toEqual(query2.respondent_options)
+        })
+})
+
+// })
 
 // it('POST /delete-question/:id')
 
 // it('POST /update-questions-order') //pass Questions as post
 
 // it('POST /delete-answer/{questionId}')
+
+
+afterAll(() => {
+    return app.close()
+})

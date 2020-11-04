@@ -64,6 +64,23 @@ const resolvers = {
       }
       data.push(question)
       return question
+    },
+    updateQuestion: (_, args) => {
+      var returnVal = null
+      
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].id === args.id) { //found the question to update
+          data[i].question = args.question
+
+          if (args.respondent_options !== null)  {
+            data[i].respondent_options = args.respondent_options  
+          }
+          returnVal = data[i]
+          break      
+        }
+      }
+
+      return returnVal
     }
   }
 }

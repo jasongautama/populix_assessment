@@ -79,6 +79,7 @@ const schema = gql`
     
     type Mutation {
         createQuestion(id: Int, question: String!, respondent_options: [RespondentOptionInput!]!): Question!
+        updateQuestion(id: Int, question: String!, respondent_options: [RespondentOptionInput]): Question
     }
 
 `

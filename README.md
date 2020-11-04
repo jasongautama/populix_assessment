@@ -31,11 +31,13 @@ Current implemented API routes:
     
     # GET /questions
 
+    # POST /update-question/:questionId
+
+    # GET /question/{id}
+
 Next Step:
 
 1. implement routes that haven't been implemented
-        
-        # GET /question/{id}
         
         # POST /delete-question/{id}
         
@@ -44,6 +46,12 @@ Next Step:
         # POST /delete-answer/{questionId}
     
 2. hook up to Database and fetch data from there
+
+Sample POST request in json format to upload-question:
+
+        POST http://localhost:4000/upload-question
+        Body: {"question": "Who are you?", "respondent_options": [{"id":1, "answer":"Jason", "type": 1}, {"id":2, "answer":"Jennie", "type": 3}] }
+
 
 Sample of json result when get all questions (GET /questions):
 
