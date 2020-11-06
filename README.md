@@ -38,12 +38,8 @@ Current implemented API routes:
     # POST /delete-question/{id}
 
 Next Step:
-
-1. implement routes that haven't been implemented
-        
-        # POST /delete-answer/{questionId}
     
-2. hook up to Database and fetch data from there
+1. hook up to Database and fetch data from there
 
 Sample POST request in json format to upload-question:
 
