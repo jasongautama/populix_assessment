@@ -44,16 +44,14 @@ const resolvers = {
     }
   },
   Query: {
-    hello: (_, { name }) => `Hello ${name || 'World'}`,
     question: (_, {id}) => {
       return data.find(element =>  element.id === id)
-
-
     },
-    questions: () => {
-      return data
-    }
-    /*
+
+    // questions: () => {
+    //   return data
+    // }
+    
     questions: async () => {
       //return data
       var dataArr = []
@@ -61,7 +59,6 @@ const resolvers = {
       await knex('questions')
         .select()
         .then((res) => {
-          console.log("get data from questions table")
           dataArr = res
           return dataArr
         })
@@ -70,7 +67,6 @@ const resolvers = {
       await knex('respondent_options')
       .select()
       .then((res) => {
-        console.log("get data from respondent_options table")
         respondArr = res
 
         return respondArr
@@ -82,15 +78,12 @@ const resolvers = {
         question.respondent_options = respondent_option
         
       })
-      
-      //console.log("dataArr=");
-      //console.log(dataArr);
 
       return dataArr
 
 
     }
-    */
+    
     
   },
   Mutation: {
@@ -108,7 +101,6 @@ const resolvers = {
       
       for (var i = 0; i < data.length; i++) {
         if (data[i].id === args.id) { //found the question to update
-          console.log(args.question);
           if (args.question === undefined || args.question !== "null")
             data[i].question = args.question
 

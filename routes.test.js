@@ -190,6 +190,27 @@ it('DELETE /delete-question/{id}', () => {
         })
 })
 
+// function sum(a, b) {
+//     return a + b
+// }
+
+// function sum1(a, b) {
+//     if (a === null && b === null) return 0
+//     if (a === null) return b
+//     if (b === null) return a
+    
+//     return a + b
+// }
+
+// it('Sum', () => {
+//     expect(sum(4,5)).toBe(9)
+    
+// })
+
+// it('Sum1', () => {
+//     expect(sum1(4,null)).toBe(4)
+// })
+
 
 afterAll(() => {
     return app.close()

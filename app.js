@@ -1,5 +1,4 @@
 const express = require('express')
-const fetch = require('node-fetch')
 const app = express()
 var question = require('./server/api/routes/question')
 app.use(express.json())

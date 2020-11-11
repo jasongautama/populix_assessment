@@ -33,7 +33,6 @@ type Character {
 //https://www.npmjs.com/package/graphql-mysql-resolver
 
 const { gql } = require('apollo-server-express')
-//const GraphQLJSON, { GraphQLJSONObject } = require('graphql-type-json')
 
 const schema = gql`
 
@@ -72,7 +71,6 @@ const schema = gql`
 
     
     type Query {
-        hello(name: String): String!
         question(id: Int): Question
         questions: [Question]
     }

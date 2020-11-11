@@ -124,8 +124,7 @@ exports.updateQuestion = async (req, res) => {
       question: req.body.question,
       respondent_options: req.body.respondent_options || null
     }
-  
-    //console.log(variables)
+
   
     await fetch('http://localhost:4000/graphql', {
       method: 'POST',
@@ -148,7 +147,6 @@ exports.updateQuestion = async (req, res) => {
   }
   
   exports.deleteQuestion = async (req, res) => {
-    console.log("I am here")
     const query = 
     `mutation DeleteQuestionForPopulix($id: Int){
     deleteQuestion(id: $id) 
