@@ -1,3 +1,4 @@
 node_modules
 .env
 notes.txt
+resolvers_static_version.js

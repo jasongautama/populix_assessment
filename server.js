@@ -1,4 +1,3 @@
-const apolloEntities = require('apollo-entities')
 const { ApolloServer } = require ('apollo-server-express')
 //const { graphqlHTTP } = require('express-graphql')
 const db = require('./server/api/models')
@@ -16,12 +15,6 @@ const server = new ApolloServer({
 const app = require('./app')
 
 server.applyMiddleware({ app })
-
-// async function myServer() {  
-//   return await app.listen({ port: 4000 }, () => {
-//   console.log(`Running a GraphQL API server at http://localhost:4000/graphql`);
-//  })
-// }
 
 const myServer =  app.listen({ port: 4000 }, () => {
  console.log(`Running a GraphQL API server at http://localhost:4000/graphql`);

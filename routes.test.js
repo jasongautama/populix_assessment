@@ -108,13 +108,13 @@ const query1 = {
         }
     ]
 }
-it('POST /update-question/{id}', () => {
+it('PUT /update-question/{id}', () => {
     return request(app)
-        .post(`/update-question/${query1.id}`)
+        .put(`/update-question/${query1.id}`)
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json')
         .send(query1)
-        .expect(200)
+        .expect(201)
         .then(({text}) => {
             var res = JSON.parse(text)
             //console.log(res)
@@ -177,7 +177,7 @@ const query3 = {
     ]
 }
 
-it('POST /delete-question/{id}', () => {
+it('DELETE /delete-question/{id}', () => {
     return request(app)
         .post(`/delete-question/${query3.id}`)
         .set('Content-Type', 'application/json')
@@ -189,10 +189,6 @@ it('POST /delete-question/{id}', () => {
             expect(res.data.deleteQuestion).toEqual(expect.stringContaining('successfully delete'))
         })
 })
-
-// it('POST /update-questions-order') //pass Questions as post
-
-// it('POST /delete-answer/{questionId}')
 
 
 afterAll(() => {

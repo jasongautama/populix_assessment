@@ -1,15 +1,12 @@
-
-//TO BE IMPLEMENTED TO CONNECT WITH DB
-/*
 const Knex = require('knex')
 
-const client = Knex({ client: 'mysql', connection: {
+const knex = Knex({ client: 'mysql', connection: {
   host: process.env.DB_HOST,
   user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE
 }})
-*/
+
 let data = [
   {
   id: 1,
@@ -50,10 +47,51 @@ const resolvers = {
     hello: (_, { name }) => `Hello ${name || 'World'}`,
     question: (_, {id}) => {
       return data.find(element =>  element.id === id)
+
+
     },
     questions: () => {
       return data
     }
+    /*
+    questions: async () => {
+      //return data
+      var dataArr = []
+      var respondArr = []
+      await knex('questions')
+        .select()
+        .then((res) => {
+          console.log("get data from questions table")
+          dataArr = res
+          return dataArr
+        })
+      
+    
+      await knex('respondent_options')
+      .select()
+      .then((res) => {
+        console.log("get data from respondent_options table")
+        respondArr = res
+
+        return respondArr
+      })
+
+      //create array and filter respondArr.question_id == dataArr.id
+      dataArr.forEach((question) => {
+        const respondent_option = respondArr.filter(res => res.question_id === question.id)
+        question.respondent_options = respondent_option
+        
+      })
+      
+      //console.log("dataArr=");
+      //console.log(dataArr);
+
+      return dataArr
+
+
+    }
+    */
+    
   },
   Mutation: {
     createQuestion: (_, args) => {
@@ -70,7 +108,9 @@ const resolvers = {
       
       for (var i = 0; i < data.length; i++) {
         if (data[i].id === args.id) { //found the question to update
-          data[i].question = args.question
+          console.log(args.question);
+          if (args.question === undefined || args.question !== "null")
+            data[i].question = args.question
 
           if (args.respondent_options !== null)  {
             data[i].respondent_options = args.respondent_options  
@@ -83,7 +123,6 @@ const resolvers = {
       return returnVal
     },
     deleteQuestion: (_, {id}) => {
-
       const res = data.filter((data) => data.id !== id)
 
       //meaning no data has been deleted

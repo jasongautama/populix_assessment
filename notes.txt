@@ -75,7 +75,7 @@ question: "Who are you?", respondent_options: [{id:1, answer:"Jason", type: 1}, 
           }
         }
         
-      }`
+}`
 
 playground
 
@@ -90,3 +90,91 @@ mutation{
   }
   
 }
+
+### 1. Query all questions ###
+GraphQL:
+
+query {
+    questions {
+        id
+        question
+        respondent_options {
+            id
+            answer
+            type
+        }
+    }
+}
+
+REST: http://localhost:4000/questions
+
+
+### 2. Query question by id ###
+GraphQL:
+
+query {
+  question(id: 1) {
+    id
+    question
+    respondent_options {
+      id
+      answer
+      type
+    }
+  }
+}
+
+REST: http://localhost:4000/question/{id}
+
+
+### 3. Upload question ###
+GraphQL:
+
+mutation{
+  createQuestion(question: "Who are you?", respondent_options: [{id:1, answer:"Jason", type: 1}, {id:2, answer:"Jennie", type: 3}]) {
+    question
+    respondent_options {
+      id
+      answer
+      type
+    }
+  } 
+}
+
+REST:
+
+POST http://localhost:4000/upload-question
+  Body: {"question": "What is your favorite artist?", "respondent_options": [{"id":1, "answer":"Lady Gaga", "type": 3}, {"id":2, "answer":"Air Supply", "type": 1}] }
+
+
+### 4. Update question ###
+GraphQL:
+
+mutation {
+  updateQuestion(id: 2, question: "null", respondent_options: [{id:1, answer:"Jakarta", type: 1}, {id:2, answer:"Tangerang", type: 3}] ) {
+    id
+    question
+    respondent_options {
+      id
+      answer
+      type
+    }
+  }
+}
+
+REST:
+
+PUT http://localhost:4000/update-question/2
+  Body: {"question": "null", "respondent_options": [{"id":1, "answer":"Bali", "type": 1}, {"id":2, "answer":"Tangerang", "type": 3}] }
+
+
+### 5. Delete question ###
+GraphQL:
+
+mutation {
+  deleteQuestion(id: 1)
+}
+
+REST:
+
+DELETE /delete-question/{id}
